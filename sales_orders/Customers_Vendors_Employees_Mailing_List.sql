@@ -16,4 +16,6 @@ UNION
 SELECT Vendors.VendName AS FullName,
       Vendors.VendStreetAddress, Vendors.VendCity,
       Vendors.VendState, Vendors.VendZipCode
-FROM Vendors;
+FROM Vendors
+
+ORDER BY 5;
