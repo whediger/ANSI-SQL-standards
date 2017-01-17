@@ -11,10 +11,10 @@ INNER JOIN  Tourney_Matches
 INNER JOIN Tournaments
   ON  Tourney_Matches.TourneyID =
       Tournaments.TourneyID
-WHERE Bowler_Scores.RawScore >= 165
-AND   Tournaments.TourneyLocation LIKE '%Thunderbird%'
+WHERE Tournaments.TourneyLocation LIKE '%Thunderbird%'
+AND   Bowler_Scores.RawScore >= 165
 
-UNION
+UNION ALL
 
 SELECT CONCAT(Bowlers.BowlerLastName, ', ', Bowlers.BowlerFirstName) AS FullName,
       'Bolero' AS Lanes
@@ -28,5 +28,5 @@ INNER JOIN  Tourney_Matches
 INNER JOIN Tournaments
   ON  Tourney_Matches.TourneyID =
       Tournaments.TourneyID
-WHERE Bowler_Scores.RawScore >= 185
-AND   Tournaments.TourneyLocation LIKE '%Bolero%';
+WHERE Tournaments.TourneyLocation LIKE '%Bolero%'
+AND   Bowler_Scores.RawScore >= 150;
