@@ -10,4 +10,4 @@ WHERE Recipe_Ingredients.MeasureAmountID =
           INNER JOIN Measurements
             ON  RI.MeasureAmountID =
                 Measurements.MeasureAmountID
-          WHERE RI.MeasureAmountID <> Recipe_Ingredients.MeasureAmountID);
+          WHERE RI.MeasureAmountID <> Ingredients.MeasureAmountID);
