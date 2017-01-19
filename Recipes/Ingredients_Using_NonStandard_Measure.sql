@@ -1,13 +1,11 @@
 
 SELECT DISTINCT Ingredients.IngredientName
 FROM Ingredients
-INNER JOIN Recipe_Ingredients
-  ON  Ingredients.IngredientID =
-      Recipe_Ingredients.IngredientID
-WHERE Recipe_Ingredients.MeasureAmountID =
-      SOME(SELECT RI.MeasureAmountID
-          FROM Recipe_Ingredients AS RI
-          INNER JOIN Measurements
-            ON  RI.MeasureAmountID =
-                Measurements.MeasureAmountID
-          WHERE RI.MeasureAmountID <> Ingredients.MeasureAmountID);
+WHERE Ingredients.MeasureAmountID <>
+      SOME(SELECT Recipe_Ingredients.MeasureAmountID
+          FROM Recipes
+          INNER JOIN Recipe_Ingredients
+            ON  Recipes.RecipeID =
+                Recipe_Ingredients.RecipeID
+          WHERE Recipe_Ingredients.IngredientID =
+                Ingredients.IngredientID);
