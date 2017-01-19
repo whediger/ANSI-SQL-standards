@@ -1,6 +1,7 @@
 
-SELECT DISTINCT Subjects.SubjectName
-FROM Subjects
-INNER JOIN Classes
-  ON Subjects.SubjectID = Classes.SubjectID
-WHERE Classes.WednesdaySchedule IS TRUE;
+SELECT Subjects.SubjectName AS Subject
+FROM  Subjects
+WHERE Subjects.SubjectID
+      IN
+      (SELECT Classes.SubjectID
+      FROM Classes);
