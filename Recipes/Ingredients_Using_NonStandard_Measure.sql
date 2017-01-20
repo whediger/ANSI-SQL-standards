@@ -1,8 +1,8 @@
 
 SELECT DISTINCT Ingredients.IngredientName
 FROM Ingredients
-WHERE Ingredients.MeasureAmountID <>
-      SOME(SELECT Recipe_Ingredients.MeasureAmountID
+WHERE Ingredients.MeasureAmountID
+      <> SOME(SELECT Recipe_Ingredients.MeasureAmountID
           FROM Recipes
           INNER JOIN Recipe_Ingredients
             ON  Recipes.RecipeID =
