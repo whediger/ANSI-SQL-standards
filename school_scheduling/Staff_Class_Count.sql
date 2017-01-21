@@ -1,7 +1,8 @@
 
-SELECT CONCAT(Staff.StfFirstName, ' ', Staff.StfLastName) AS Staff_Member,
-        (SELECT COUNT(StaffID)
-        FROM  Faculty_Classes
-        WHERE Faculty_Classes.StaffID =
-              Staff.staffID) AS Num_Of_Classes
-FROM Staff;
+SELECT CONCAT(Staff.StfFirstName, ' ', Staff.StfLastName) AS Staff_Full_Name,
+    COUNT(Faculty_Classes.ClassID) AS Num_Of_Classes
+FROM Staff
+INNER JOIN Faculty_Classes
+  ON  Staff.StaffID =
+      Faculty_Classes.StaffID
+GROUP BY Staff_Full_Name;
