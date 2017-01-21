@@ -1,6 +1,6 @@
 
 
-SELECT SUM(Recipe_Ingredients.Amount)
+SELECT SUM(Recipe_Ingredients.Amount) AS Salt_Total_All_Recipes
 FROM  Recipe_Ingredients
 WHERE Recipe_Ingredients.IngredientID =
       SOME(SELECT RI.IngredientID
