@@ -7,8 +7,9 @@ FROM Recipe_Ingredients
 INNER JOIN Measurements
   ON  Recipe_Ingredients.MeasureAmountID =
       Measurements.MeasureAmountID
-RIGHT OUTER JOIN Ingredients
+INNER JOIN Ingredients
   ON  Recipe_Ingredients.IngredientID =
       Ingredients.IngredientID
 GROUP BY  Recipe_Ingredients.MeasureAmountID,
-          Ingredients.IngredientID;
+          Ingredients.IngredientID
+ORDER BY Ingredients.IngredientName;
