@@ -1,25 +1,13 @@
 
-SELECT RecipesBeef.RecipeTitle
-FROM (SELECT Recipes.RecipeID, Recipes.RecipeTitle
-    FROM (Recipes
-    INNER JOIN Recipe_Ingredients
-      ON  Recipes.RecipeID =
-          Recipe_Ingredients.RecipeID)
-    INNER JOIN Ingredients
-      ON  Recipe_Ingredients.IngredientID =
-          Ingredients.IngredientID
-    WHERE Recipe_Ingredients.IngredientID = 1)
-  AS RecipesBeef
-INNER JOIN
-    (SELECT Recipes.RecipeID, Recipes.RecipeTitle
-    FROM (Recipes
-    INNER JOIN Recipe_Ingredients
-      ON  Recipes.RecipeID =
-          Recipe_Ingredients.RecipeID)
-    INNER JOIN Ingredients
-      ON  Recipe_Ingredients.IngredientID =
-          Ingredients.IngredientID
-    WHERE Recipe_Ingredients.IngredientID = 9)
-  AS RecipesGarlic
-ON  RecipesBeef.RecipeID =
-    RecipesGarlic.RecipeID;
+SELECT Recipes.RecipeTitle
+FROM Recipes
+WHERE Recipes.RecipeID
+      IN (SELECT Recipe_Ingredients.RecipeID
+          FROM Ingredients
+          INNER JOIN Recipe_Ingredients
+            ON  Ingredients.IngredientID =
+                Recipe_Ingredients.IngredientID
+          WHERE Ingredients.IngredientName = 'Beef'
+          OR    Ingredients.IngredientName = 'Garlic'
+          GROUP BY Recipe_Ingredients.RecipeID
+          HAVING COUNT(Recipe_Ingredients.RecipeID) = 2);
