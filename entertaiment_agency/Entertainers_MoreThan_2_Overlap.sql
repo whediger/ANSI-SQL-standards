@@ -1,7 +1,8 @@
 
 SELECT Overlapped.EntStageName AS Ent_Overlapped_More_Than_2_Times
 FROM
-    (SELECT  Entertainers.EntStageName
+    (SELECT  Entertainers.EntStageName,
+              Eng1.EngagementNumber
     FROM Entertainers
     INNER JOIN Engagements AS Eng1
       ON  Entertainers.EntertainerID =
@@ -18,7 +19,8 @@ FROM
           Eng1.StopTime
     AND   Eng2.StopTime >=
           Eng1.StartTime
-    GROUP BY  Entertainers.EntStageName)
+    GROUP BY  Eng1.EngagementNumber,
+              Entertainers.EntStageName)
     AS Overlapped
 GROUP BY Overlapped.EntStageName
 HAVING COUNT(Overlapped.EntStageName) > 2;
