@@ -25,4 +25,4 @@ INNER JOIN (SELECT  MAX(BS.RawScore) AS T_High_Score,
 GROUP BY  Captains_Name,
           Team_Scores.T_High_Score
 HAVING  Personal_Record
-        < Team_Scores.T_High_Score;
+        > Team_Scores.T_High_Score;
