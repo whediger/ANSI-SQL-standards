@@ -5,9 +5,9 @@ INSERT INTO Orders
       CustomerID,
       EmployeeID,
       OrderTotal)
-SELECT
-        '2013-06-15',
-        '2013-06-18',
+SELECT DISTINCT
+        '2013-06-15' AS OrderDate,
+        '2013-06-18' AS ShipDate,
         Orders.CustomerID,
         Orders.EmployeeID,
         Orders.OrderTotal
